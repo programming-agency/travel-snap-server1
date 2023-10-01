@@ -3,7 +3,7 @@ const Post = require("../models/Post");
 const postRoutes = (app) => {
     // POST
     app.post('/api/posts/create/', (req, res) => {
-        console.log('lksjfdsljkf', req.body);
+        // console.log('lksjfdsljkf', req.body);
         try {
             const data = req.body
             const {title, userName, content, } = data
@@ -28,5 +28,8 @@ const postRoutes = (app) => {
     // UPDATE
     // DELETE
 }
+
+
+
 
 module.exports = postRoutes;
