@@ -6,23 +6,23 @@ const postRoutes = (app) => {
         // console.log('lksjfdsljkf', req.body);
         try {
             const data = req.body
-            const {title, userName, content, } = data
+            const { title, userName, content, country } = data
 
-            if(!title || !userName || !content) return res.status(401).json({message: 'title, userName, content are required!'})
+            if (!title || !userName || !content || !country) return res.status(401).json({ message: 'title, userName, content are required!' })
             const createdPost = new Post(data).save()
-            res.status(200).json({message: 'Post created successfully!', post: createdPost})
+            res.status(200).json({ message: 'Post created successfully!', post: createdPost })
         } catch (error) {
-            res.status(501).json({message: 'Post creation failed!'})
+            res.status(501).json({ message: 'Post creation failed!' })
         }
     })
 
     // GET
-    app.get('/api/posts/', async(req, res) => {
+    app.get('/api/posts/', async (req, res) => {
         try {
             const posts = await Post.find()
             res.status(200).json(posts)
         } catch (error) {
-            res.status(501).json({message: 'Something went wrong!'})
+            res.status(501).json({ message: 'Something went wrong!' })
         }
     })
     // UPDATE
