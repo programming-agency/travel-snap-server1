@@ -25,8 +25,70 @@ const postRoutes = (app) => {
             res.status(501).json({ message: 'Something went wrong!' })
         }
     })
-    // UPDATE
+
+    // destination 
+
+    // Create a route to fetch and filter posts by country
+    app.get('/api/posts/:country', async (req, res) => {
+        const country = req.params.country;
+
+        try {
+            // Use the 'find' method to filter posts by the 'country' field
+            const posts = await Post.find({ country: country });
+
+            if (posts.length === 0) {
+                // Handle the case where no matching posts are found
+                return res.status(404).json({ message: 'No posts found for the specified country.' });
+            }
+
+            res.status(200).json(posts);
+        } catch (error) {
+            console.error('Error fetching posts by country:', error);
+            res.status(500).json({ message: 'Something went wrong!' });
+        }
+    });
+    // app.get('/api/posts/:country', async (req, res) => {
+    //     const country = req.params.country;
+    //     try {
+    //         const posts = await Post.find({ country: country });
+    //         res.status(200).json(posts);
+    //     } catch (error) {
+    //         console.error('Error fetching posts by country:', error);
+    //         res.status(500).json({ message: 'Something went wrong!' });
+    //     }
+    // });
+
+    //  get my post
+    app.get('/api/posts/username/:userName', async (req, res) => {
+        const username = req.params.username;
+
+        try {
+            // Use the 'find' method to filter posts by the 'username' field of the author
+            const posts = await Post.find({ authorUsername: username });
+
+            if (posts.length === 0) {
+                // Handle the case where no matching posts are found
+                return res.status(404).json({ message: 'No posts found for the specified username.' });
+            }
+
+            res.status(200).json(posts);
+        } catch (error) {
+            console.error('Error fetching posts by username:', error);
+            res.status(500).json({ message: 'Something went wrong!' });
+        }
+    });
+
     // DELETE
+
+    app.delete('/api/posts/:id', async (req, res) => {
+        try {
+            const deletePost = await Post.findByIdAndDelete(req.params._id)
+            res.status(200).json({ message: 'Student deleted successfully' })
+        } catch (error) {
+            res.status(500).json(error?.message)
+            // console.log(error);
+        }
+    })
 }
 
 
