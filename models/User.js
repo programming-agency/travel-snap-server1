@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { default: Stripe } = require("stripe");
 
 const userSchema = mongoose.Schema({
     userName: {
@@ -16,6 +17,17 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    userType: {
+        type: String,
+        enum: [
+            "FREE",
+            "PREMIUM"
+        ],
+        default: "FREE"
+    },
+    paymentID: String
+
+
 });
 
 module.exports = mongoose.model("User", userSchema);

@@ -40,7 +40,7 @@ const userRoute = (app) => {
     // user update 
     app.put('/api/user/email/:userEmail', async (req, res) => {
         const userEmail = req.params.userEmail;
-        console.log(userEmail == 'mango@gmail.com');
+        // console.log(userEmail == 'mango@gmail.com');
         const updatedUserData = req.body;
         console.log(updatedUserData);
         // Updated user data in the request body
