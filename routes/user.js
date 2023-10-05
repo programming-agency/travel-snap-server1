@@ -44,26 +44,20 @@ const userRoute = (app) => {
         const updatedUserData = req.body;
         console.log(updatedUserData);
         // Updated user data in the request body
-
         try {
-
             const updatedUser = await User.findOneAndUpdate({ email: userEmail }, updatedUserData, {
                 new: true,
             });
-
-            console.log(updatedUser);
-
+            // console.log(updatedUser);
             if (!updatedUser) {
                 return res.status(404).json({ msg: 'User not found' });
             }
-
             return res.status(200).json(updatedUser);
         } catch (error) {
             console.error('Error updating user profile by email:', error);
             return res.status(500).json({ msg: 'Server Error' });
         }
     });
-
 };
 
 

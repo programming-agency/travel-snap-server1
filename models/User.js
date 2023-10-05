@@ -17,6 +17,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    postCount: {
+        type: Number,
+        default: 0
+    },
     userType: {
         type: String,
         enum: [
