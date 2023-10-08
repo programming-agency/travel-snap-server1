@@ -26,6 +26,10 @@ const PostSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    userType: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,

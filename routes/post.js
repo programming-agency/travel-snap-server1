@@ -26,8 +26,8 @@ const postRoutes = (app) => {
                     res.status(200).json({ message: 'Post created successfully!', post: createdPost })
                 } else {
 
-                    if (parseInt(user.postCount || 0) < 4) {
-                        console.log(data);
+                    if (parseInt(user.postCount || 0) < 3) {
+                        // console.log(data);
                         const createdPost = await new Post(data).save()
                         await User.findOneAndUpdate({ email }, {
                             $inc: { postCount: 1 },
